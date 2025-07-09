@@ -39,7 +39,7 @@ async function createFigures(config, document, utils) {
       const {svg} = await mermaid.mermaidAPI.render(
         'diagram-' + figureNum, mermaidSource);
       const template = document.createElement('template');
-      const cleanedSvg = svg.trim().replace(/height="[0-9]*"/, '');
+      const cleanedSvg = svg.trim().replace(/height="[0-9]*"/, '').replaceAll('<br>', '</p><p>');
       template.innerHTML = cleanedSvg;
       figure.parentElement.prepend(template.content.firstChild);
       figure.remove();
